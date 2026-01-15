@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Bubbles from '@/components/bubbles';
 import Footer from '@/components/footer';
 import ImageCarousel from '@/components/image-carousel';
+import TextBoard from '@/components/text-board';
 import WishForm, { type Wish } from '@/components/wish-form';
 import WishList from '@/components/wish-list';
 
@@ -41,9 +42,10 @@ export default function Home() {
         <h1 className="text-4xl font-bold text-center text-foreground bg-foreground/10 backdrop-blur-sm p-4 rounded-lg">
           Celebrating You Today and Always ✨
         </h1>
+        <TextBoard />
+        <ImageCarousel />
         <WishForm onWishSubmit={handleWishSubmit} />
         <WishList wishes={wishes} />
-        <ImageCarousel />
       </main>
       <Footer />
     </div>
