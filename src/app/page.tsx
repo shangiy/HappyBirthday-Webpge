@@ -17,7 +17,7 @@ const initialWishes: Wish[] = [
   },
   {
     id: '2',
-    name: 'Iryn',
+    name: 'Shangi',
     wish: 'Happy birthday my love ♥️',
     timestamp: new Date('2026-01-14T20:12:00'),
   },
