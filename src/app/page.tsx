@@ -39,9 +39,14 @@ export default function Home() {
     <div className="relative flex min-h-screen flex-col">
       <Bubbles />
       <main className="flex flex-1 flex-col items-center justify-center space-y-8 py-12 px-4">
-        <h1 className="text-4xl font-bold text-center text-foreground bg-foreground/10 backdrop-blur-sm p-4 rounded-lg">
-          Celebrating You Today and Always ✨
-        </h1>
+        <div className="text-center bg-foreground/10 backdrop-blur-sm p-4 rounded-lg">
+          <h1 className="text-4xl font-bold text-foreground">
+            Happy Birthday, Adrian!
+          </h1>
+          <h3 className="text-xl mt-2 text-foreground/80">
+            Celebrating You Today and Always ✨
+          </h3>
+        </div>
         <TextBoard />
         <ImageCarousel />
         <WishForm onWishSubmit={handleWishSubmit} />
