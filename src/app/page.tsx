@@ -45,7 +45,12 @@ export default function Home() {
         <TextBoard />
         <ImageCarousel />
         <WishForm onWishSubmit={handleWishSubmit} />
-        <WishList wishes={wishes} />
+        <div className="w-full max-w-3xl text-center space-y-4">
+          <h2 className="text-3xl font-bold text-foreground">
+            Family & Friends
+          </h2>
+          <WishList wishes={wishes} />
+        </div>
       </main>
       <Footer />
     </div>

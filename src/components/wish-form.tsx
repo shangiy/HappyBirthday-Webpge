@@ -14,7 +14,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Gift, Heart } from 'lucide-react';
+import { Gift } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -49,8 +49,7 @@ export default function WishForm({ onWishSubmit }: WishFormProps) {
     <Card className="bg-white/30 backdrop-blur-lg border-white/50 shadow-lg rounded-2xl w-full max-w-3xl">
       <CardHeader>
         <CardTitle className="flex items-center justify-center gap-2 text-2xl font-bold text-foreground">
-          <Heart className="text-primary" />
-          Birthday Wishes
+          Send your birthday wish to Adrian
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -85,7 +84,7 @@ export default function WishForm({ onWishSubmit }: WishFormProps) {
               )}
             />
             <Button type="submit" className="w-full" size="lg">
-              Send Birthday Wish <Gift className="ml-2" />
+              Send your birthday wish to Adrian <Gift className="ml-2" />
             </Button>
           </form>
         </Form>

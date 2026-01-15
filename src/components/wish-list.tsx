@@ -16,9 +16,9 @@ export default function WishList({ wishes }: WishListProps) {
   }
 
   return (
-    <div className="w-full max-w-3xl mt-8">
+    <div className="w-full max-w-3xl">
       <ScrollArea className="h-[400px] w-full">
-        <div className="space-y-4 pr-4">
+        <div className="space-y-4 pr-4 text-left">
           {wishes.map((wish) => (
             <Card key={wish.id} className="bg-white/30 backdrop-blur-lg border-white/50 shadow-lg rounded-2xl">
               <CardHeader className="flex-row items-center gap-3 space-y-0 pb-3">
