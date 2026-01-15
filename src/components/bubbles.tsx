@@ -35,7 +35,7 @@ const Bubbles = () => {
     // Bubbles
     const bubbles: THREE.Mesh[] = [];
     const bubbleMaterial = new THREE.MeshPhysicalMaterial({
-      color: 0xAEE2FF,
+      color: 0xFFDDEE,
       metalness: 0.1,
       roughness: 0.05,
       transmission: 1.0,

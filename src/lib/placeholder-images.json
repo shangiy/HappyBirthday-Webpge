@@ -1,3 +1,34 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "1",
+      "description": "Abstract pink and blue",
+      "imageUrl": "https://images.unsplash.com/photo-1503455637927-730bce8583c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMHBpbmt8ZW58MHx8fHwxNzY4NDc3NjYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract pink"
+    },
+    {
+      "id": "2",
+      "description": "Pastel gradients",
+      "imageUrl": "https://images.unsplash.com/photo-1563291074-2bf8677ac0e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwYXN0ZWwlMjBncmFkaWVudHxlbnwwfHx8fDE3Njg1MDA4NzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pastel gradient"
+    },
+    {
+      "id": "3",
+      "description": "Bokeh lights",
+      "imageUrl": "https://images.unsplash.com/photo-1532446997697-0b92fdc456fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxib2tlaCUyMGxpZ2h0c3xlbnwwfHx8fDE3Njg1MTc4MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "bokeh lights"
+    },
+    {
+      "id": "4",
+      "description": "Glittering background",
+      "imageUrl": "https://images.unsplash.com/photo-1608935405374-223bbea5d535?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxnbGl0dGVyJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3Njg1MTc4MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "glitter background"
+    },
+    {
+      "id": "5",
+      "description": "Confetti celebration",
+      "imageUrl": "https://images.unsplash.com/photo-1651399973942-1721a0de0851?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb25mZXR0aSUyMGNlbGVicmF0aW9ufGVufDB8fHx8MTc2ODUxNzgyNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "confetti celebration"
+    }
+  ]
 }
