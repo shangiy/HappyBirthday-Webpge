@@ -46,6 +46,10 @@ const AnalogClockFace = () => {
                         <div className="absolute top-3 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-blue-500 rounded-full border border-blue-700"></div>
                     </div>
                 ))}
+
+                <div className="absolute top-[30%] left-1/2 -translate-x-1/2 text-center font-clock text-[10px] text-[#00E5E5] z-10" style={{ textShadow: '0 0 3px #00E5E5' }}>
+                    adrian <br /> bash
+                </div>
                 
                 {/* Face */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
