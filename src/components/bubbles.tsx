@@ -34,14 +34,10 @@ const Bubbles = () => {
 
     // Bubbles
     const bubbles: THREE.Mesh[] = [];
-    const bubbleMaterial = new THREE.MeshPhysicalMaterial({
+    const bubbleMaterial = new THREE.MeshLambertMaterial({
       color: 0xFFDDEE,
-      metalness: 0.1,
-      roughness: 0.05,
-      transmission: 1.0,
-      ior: 1.33,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.6
     });
 
     const bubbleCount = 60;
