@@ -79,11 +79,6 @@ const CountdownTimer = () => {
     return (
         <div className="relative mb-8 flex items-center justify-center gap-8 flex-wrap pt-12">
             <Balloon
-                color="bg-pink-400"
-                position="top-0 left-1/4 -rotate-[25deg]"
-                animation="animate-sway-1"
-            />
-            <Balloon
                 color="bg-blue-400"
                 position="top-4 right-1/4 rotate-[25deg]"
                 animation="animate-sway-2"
