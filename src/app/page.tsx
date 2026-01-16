@@ -50,8 +50,8 @@ export default function Home() {
         <div className="relative mt-16 flex items-center gap-6">
           <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-full border-4 border-white shadow-2xl animate-slide-in-from-right">
             <Image
-              src="/logo.jpg"
-              alt="Logo"
+              src="/AK.png"
+              alt="AK"
               fill
               className="object-cover"
               data-ai-hint="logo"
