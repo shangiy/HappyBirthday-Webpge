@@ -77,6 +77,16 @@ export default function Home() {
           </h2>
           <WishList wishes={wishes || []} />
         </div>
+        <div className="w-full max-w-3xl">
+          <Image
+            src="/Jan25.png"
+            alt="Adrian's Birthday Poster"
+            width={1080}
+            height={1080}
+            className="w-full h-auto rounded-lg shadow-2xl"
+            data-ai-hint="poster birthday"
+          />
+        </div>
       </main>
       <Footer />
     </div>
