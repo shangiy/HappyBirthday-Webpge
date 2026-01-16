@@ -10,6 +10,7 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Button } from './ui/button';
 
 export default function ImageCarousel() {
   const plugin = React.useRef(
@@ -46,6 +47,9 @@ export default function ImageCarousel() {
           ))}
         </CarouselContent>
       </Carousel>
+      <div className="flex justify-center mt-4">
+        <Button>view more pics</Button>
+      </div>
     </div>
   );
 }
