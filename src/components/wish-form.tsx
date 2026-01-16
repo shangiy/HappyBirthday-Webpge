@@ -15,6 +15,9 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Gift } from 'lucide-react';
+import { useFirebase, useUser, addDocumentNonBlocking } from '@/firebase';
+import { collection, serverTimestamp, type Timestamp } from 'firebase/firestore';
+import { useToast } from '@/hooks/use-toast';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -25,13 +28,19 @@ const formSchema = z.object({
   }),
 });
 
-export type Wish = z.infer<typeof formSchema> & { id: string; timestamp: Date };
-
-type WishFormProps = {
-  onWishSubmit: (wish: Omit<Wish, 'id' | 'timestamp'>) => void;
+export type Wish = {
+  id: string;
+  name: string;
+  wish: string;
+  createdAt: Timestamp;
+  userId: string;
 };
 
-export default function WishForm({ onWishSubmit }: WishFormProps) {
+export default function WishForm() {
+  const { firestore } = useFirebase();
+  const { user } = useUser();
+  const { toast } = useToast();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,7 +50,30 @@ export default function WishForm({ onWishSubmit }: WishFormProps) {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    onWishSubmit(values);
+    if (!user) {
+      toast({
+        title: 'Authentication Error',
+        description:
+          'You must be signed in to submit a wish. Please wait a moment and try again.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    const wishData = {
+      ...values,
+      userId: user.uid,
+      createdAt: serverTimestamp(),
+    };
+
+    const collectionRef = collection(firestore, 'users', user.uid, 'wishes');
+    addDocumentNonBlocking(collectionRef, wishData);
+
+    toast({
+      title: 'Wish Sent!',
+      description: 'Thank you for your heartfelt wish for Adrian!',
+    });
+    
     form.reset();
   }
 

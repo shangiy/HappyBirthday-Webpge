@@ -1,40 +1,44 @@
 'use client';
 
-import { useState } from 'react';
+import {useEffect} from 'react';
 import Bubbles from '@/components/bubbles';
 import Footer from '@/components/footer';
 import ImageCarousel from '@/components/image-carousel';
 import TextBoard from '@/components/text-board';
-import WishForm, { type Wish } from '@/components/wish-form';
+import WishForm, {type Wish} from '@/components/wish-form';
 import WishList from '@/components/wish-list';
 import HeadingDecorations from '@/components/heading-decorations';
-
-const initialWishes: Wish[] = [
-  {
-    id: '1',
-    name: 'Mama Adrian',
-    wish: 'Thank you for your wishes',
-    timestamp: new Date('2026-01-15T04:30:00'),
-  },
-  {
-    id: '2',
-    name: 'Shangi',
-    wish: "Happy birthday my nephew as you'll turn a year old on jan 25.",
-    timestamp: new Date('2026-01-14T20:12:00'),
-  },
-];
+import {
+  useUser,
+  useFirebase,
+  useMemoFirebase,
+  useCollection,
+  initiateAnonymousSignIn,
+} from '@/firebase';
+import {collection, query, orderBy} from 'firebase/firestore';
 
 export default function Home() {
-  const [wishes, setWishes] = useState<Wish[]>(initialWishes);
+  const {auth, firestore} = useFirebase();
+  const {user, isUserLoading} = useUser();
 
-  const handleWishSubmit = (newWish: Omit<Wish, 'id' | 'timestamp'>) => {
-    const wishWithTimestamp: Wish = {
-      ...newWish,
-      id: new Date().toISOString(),
-      timestamp: new Date(),
-    };
-    setWishes((prevWishes) => [wishWithTimestamp, ...prevWishes]);
-  };
+  useEffect(() => {
+    if (!isUserLoading && !user) {
+      initiateAnonymousSignIn(auth);
+    }
+  }, [isUserLoading, user, auth]);
+
+  const wishesQuery = useMemoFirebase(
+    () =>
+      user
+        ? query(
+            collection(firestore, 'users', user.uid, 'wishes'),
+            orderBy('createdAt', 'desc')
+          )
+        : null,
+    [user, firestore]
+  );
+
+  const {data: wishes} = useCollection<Wish>(wishesQuery);
 
   return (
     <div className="relative flex min-h-screen flex-col overflow-x-clip">
@@ -54,12 +58,12 @@ export default function Home() {
 
         <TextBoard />
         <ImageCarousel />
-        <WishForm onWishSubmit={handleWishSubmit} />
+        <WishForm />
         <div className="w-full max-w-3xl text-center space-y-4">
           <h2 className="text-3xl font-bold text-foreground">
-            Family & Friends wishes to Adrian 
+            Family & Friends wishes to Adrian
           </h2>
-          <WishList wishes={wishes} />
+          <WishList wishes={wishes || []} />
         </div>
       </main>
       <Footer />

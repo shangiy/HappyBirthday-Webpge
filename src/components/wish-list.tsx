@@ -12,7 +12,11 @@ type WishListProps = {
 
 export default function WishList({ wishes }: WishListProps) {
   if (wishes.length === 0) {
-    return null;
+    return (
+      <div className="text-center text-muted-foreground p-8">
+        Be the first to send a wish!
+      </div>
+    );
   }
 
   const wishContent = (
@@ -28,7 +32,9 @@ export default function WishList({ wishes }: WishListProps) {
           <CardContent>
             <p className="text-muted-foreground text-base mb-2">{wish.wish}</p>
             <p className="text-xs text-muted-foreground/70 text-right">
-              {format(wish.timestamp, "dd MMM yyyy, hh:mm a")}
+              {wish.createdAt
+                ? format(wish.createdAt.toDate(), 'dd MMM yyyy, hh:mm a')
+                : 'Sending...'}
             </p>
           </CardContent>
         </Card>
