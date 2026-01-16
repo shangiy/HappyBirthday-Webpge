@@ -6,7 +6,7 @@ import AnalogClockFace from './analog-clock-face';
 
 const wishes = [
   "💖 Happy 1st Birthday, Adrian! 💖",
-  "🎉 On this January 25th is extra special day, we celebrate the tiny, amazing human you are. Your giggle lights up every room, and your sweet spirit touches every heart. ✨",
+  "🎉 On this January 25th is an extra special day, we celebrate the tiny, amazing human you are. Your giggle lights up every room, and your sweet spirit touches every heart. ✨",
   "💝 You’ve made our lives so much better just by joining the family. We can't wait to see all the big things you'll do! ✨",
   "🌟 May this year be filled with cake, new discoveries, and so much love. You deserve the whole world and more. ✨",
   "🎉 You make our world so much brighter just by being in it. Here’s to a lifetime of wonderful memories starting right now! ✨",
