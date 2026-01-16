@@ -62,7 +62,7 @@ export default function Home() {
               data-ai-hint="logo"
             />
           </div>
-          <div className="relative animate-fade-in-delayed opacity-0">
+          <div className="relative animate-trickle-in-from-right-delayed opacity-0">
             <HeadingDecorations />
             <div className="text-center bg-foreground/10 backdrop-blur-sm p-4 rounded-lg z-10 relative">
               <h1 className="text-4xl font-bold text-foreground">
