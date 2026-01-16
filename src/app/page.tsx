@@ -54,11 +54,11 @@ export default function Home() {
         <div className="relative mt-16 flex items-center gap-6">
           <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-full border-4 border-white shadow-2xl animate-slide-in-from-right">
             <Image
-              src="/logo.png"
-              alt="Logo"
+              src="/jan25.png"
+              alt="Adrian's Birthday Poster"
               fill
               className="object-cover"
-              data-ai-hint="logo"
+              data-ai-hint="poster birthday"
             />
           </div>
           <div className="relative animate-fade-in-delayed opacity-0">
