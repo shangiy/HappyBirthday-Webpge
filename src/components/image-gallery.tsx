@@ -1,82 +1,53 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import * as React from 'react';
 import Image from 'next/image';
-import { cn } from '@/lib/utils';
+import Autoplay from 'embla-carousel-autoplay';
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from '@/components/ui/carousel';
 import type { ImagePlaceholder } from '@/lib/placeholder-images';
 
-const shuffleArray = (array: ImagePlaceholder[]): ImagePlaceholder[] => {
-    const newArray = [...array];
-    for (let i = newArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-    }
-    return newArray;
-};
-
 export default function ImageGallery({ images }: { images: ImagePlaceholder[] }) {
-    const [gridImages, setGridImages] = useState<ImagePlaceholder[]>([]);
-    const [isAnimatingOut, setIsAnimatingOut] = useState(false);
-    const [isMounted, setIsMounted] = useState(false);
-
-    useEffect(() => {
-        setIsMounted(true);
-        // Initial shuffle on client mount
-        if (images.length > 0) {
-             setGridImages(shuffleArray(images).slice(0, 9));
-        }
-    }, [images]);
-
-    useEffect(() => {
-        if (!isMounted || images.length === 0) return;
-
-        const interval = setInterval(() => {
-            setIsAnimatingOut(true);
-            setTimeout(() => {
-                setGridImages(shuffleArray(images).slice(0, 9));
-                setIsAnimatingOut(false);
-            }, 500); 
-        }, 5000);
-
-        return () => clearInterval(interval);
-    }, [isMounted, images]);
-    
-    if (!isMounted) {
-        // Render placeholders on server to avoid hydration mismatch from shuffle
-        return (
-             <div className="grid grid-cols-3 gap-4">
-                {Array.from({ length: 9 }).map((_, i) => (
-                    <div key={`placeholder-${i}`} className="aspect-square bg-muted rounded-lg" />
-                ))}
-            </div>
-        )
-    }
-
-    return (
-        <div className="grid grid-cols-3 gap-4">
-            {gridImages.map((image) => (
-                <div
-                    key={image.id}
-                    className={cn(
-                        "relative aspect-square rounded-lg overflow-hidden shadow-lg",
-                        "transition-opacity duration-500 ease-in-out",
-                        isAnimatingOut ? 'opacity-0' : 'opacity-100'
-                    )}
-                >
-                    <Image
-                        src={image.imageUrl}
-                        alt={image.description}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={image.imageHint}
-                        sizes="(max-width: 1024px) 30vw, 25vw"
-                    />
+  return (
+    <div className="w-full max-w-3xl">
+      <Carousel
+        opts={{
+          align: 'start',
+          loop: true,
+          direction: 'rtl',
+        }}
+        plugins={[
+          Autoplay({
+            delay: 2000,
+            stopOnInteraction: false,
+            stopOnMouseEnter: true,
+          }),
+        ]}
+        className="w-full"
+      >
+        <CarouselContent>
+          {images.map((image) => (
+            <CarouselItem key={image.id} className="basis-1/2 sm:basis-1/3 lg:basis-1/4">
+              <div className="p-1">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-lg">
+                  <Image
+                    src={image.imageUrl}
+                    alt={image.description}
+                    fill
+                    className="object-cover"
+                    data-ai-hint={image.imageHint}
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  />
                 </div>
-            ))}
-            {/* Fill empty grid cells */}
-            {Array.from({ length: Math.max(0, 9 - gridImages.length) }).map((_, i) => (
-                <div key={`placeholder-empty-${i}`} className="aspect-square" />
-            ))}
-        </div>
-    );
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
+    </div>
+  );
 }

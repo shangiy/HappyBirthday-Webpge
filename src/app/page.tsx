@@ -1,6 +1,6 @@
 'use client';
 
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import Image from 'next/image';
 import Bubbles from '@/components/bubbles';
 import Footer from '@/components/footer';
@@ -23,6 +23,7 @@ import { Button } from '@/components/ui/button';
 export default function Home() {
   const {auth, firestore} = useFirebase();
   const {user, isUserLoading} = useUser();
+  const [showGallery, setShowGallery] = useState(false);
 
   useEffect(() => {
     if (!isUserLoading && !user) {
@@ -72,8 +73,11 @@ export default function Home() {
 
         <TextBoard />
         <div className="w-full max-w-3xl text-center space-y-4">
-          <ImageGallery images={PlaceHolderImages} />
-          <Button>View more pics</Button>
+          {!showGallery ? (
+            <Button onClick={() => setShowGallery(true)}>View more pics</Button>
+          ) : (
+            <ImageGallery images={PlaceHolderImages} />
+          )}
         </div>
         <WishForm />
         <div className="w-full max-w-3xl text-center space-y-4">
