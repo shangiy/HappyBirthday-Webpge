@@ -1,0 +1,102 @@
+/**
+ * Core Philosophy: This ruleset implements a strict user-ownership security model.
+ * All user-generated content is private and can only be accessed by its creator.
+ *
+ * Data Structure: All user data is organized under the path /users/{userId},
+ * creating a clear, hierarchical structure where the user's unique ID (UID)
+ * serves as the root for all of their personal documents. For example, a user's
+ * birthday wishes are stored in a subcollection at /users/{userId}/wishes/{wishId}.
+ *
+ * Key Security Decisions:
+ * - Strict Ownership: A user can only read or write data within their own
+ *   data tree (i.e., paths starting with /users/{their-own-userId}). Any
+ *   attempt to access another user's data is denied.
+ * - No Global Access: There are no admin roles or public collections. All data
+ *   is private by default.
+ * - Path-Based Security: Authorization relies on the {userId} wildcard in the
+ *   document path, which is a highly performant and secure method.
+ *
+ * Denormalization for Authorization: To ensure relational integrity and prevent
+ * documents from being "moved" between users, we enforce that any wish document
+ * created under a user's path (/users/{userId}/...) must contain a 'userId'
+ * field that matches the {userId} from the path. This field is immutable and
+ * checked on creation and updates.
+ *
+ * Structural Segregation: This model uses structural segregation by default,
+ * nesting all private user data within dedicated user-owned subcollections. This
+ * inherently prevents data leakage and simplifies list queries.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper Functions for Reusable Logic
+
+    /**
+     * Checks if the user is authenticated.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * Checks if the authenticated user's UID matches the provided userId from the path.
+     * This is the foundation of the ownership model.
+     * @param userId The user ID from the document path.
+     */
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    /**
+     * Verifies that the document being modified already exists.
+     * CRITICAL for preventing unintended side effects in update/delete operations.
+     */
+    function documentExists() {
+      return resource != null;
+    }
+
+    /**
+     * Validates an incoming document on creation to ensure the embedded userId
+     * field matches the userId in the document path. This enforces relational
+     * integrity and prevents a user from creating a wish in another user's collection.
+     */
+    function hasValidCreationData(userId) {
+      return request.resource.data.userId == userId;
+    }
+
+    /**
+     * Validates an incoming document on update to ensure the userId field is
+     * immutable. This prevents the document's ownership from ever being changed.
+     */
+    function hasValidUpdateData() {
+      return request.resource.data.userId == resource.data.userId;
+    }
+
+    /**
+     * @description
+     *   Manages access to a user's birthday wishes. These documents are private
+     *   and can only be accessed by the user who created them.
+     * @path
+     *   /users/{userId}/wishes/{wishId}
+     * @allow
+     *   An authenticated user (auth.uid='user123') can (create) a new wish at
+     *   the path /users/user123/wishes/wish-abc, provided the document data
+     *   includes {'userId': 'user123'}.
+     * @deny
+     *   An authenticated user (auth.uid='user456') is denied trying to (get)
+     *   a document at /users/user123/wishes/wish-abc because their UID does
+     *   not match the {userId} in the path.
+     * @principle
+     *   Restricts access to a user's own data tree. This enforces a strict
+     *   privacy and ownership model for all user-generated content.
+     */
+    match /users/{userId}/wishes/{wishId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) && hasValidCreationData(userId);
+      allow update: if isOwner(userId) && documentExists() && hasValidUpdateData();
+      allow delete: if isOwner(userId) && documentExists();
+    }
+  }
+}
