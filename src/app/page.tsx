@@ -1,6 +1,6 @@
 'use client';
 
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import Image from 'next/image';
 import Bubbles from '@/components/bubbles';
 import Footer from '@/components/footer';
@@ -18,10 +18,13 @@ import {
   initiateAnonymousSignIn,
 } from '@/firebase';
 import {collection, query, orderBy} from 'firebase/firestore';
+import { Button } from '@/components/ui/button';
+import { Camera } from 'lucide-react';
 
 export default function Home() {
   const {auth, firestore} = useFirebase();
   const {user, isUserLoading} = useUser();
+  const [showImageGrid, setShowImageGrid] = useState(false);
 
   useEffect(() => {
     if (!isUserLoading && !user) {
@@ -70,8 +73,15 @@ export default function Home() {
         </div>
 
         <TextBoard />
-        <div className="w-full max-w-3xl text-center space-y-4">
-          <ImageGallery images={PlaceHolderImages} />
+        <div className="w-full max-w-4xl text-center space-y-4">
+          {!showImageGrid ? (
+            <Button onClick={() => setShowImageGrid(true)} size="lg">
+              <Camera className="mr-2" />
+              View more image
+            </Button>
+          ) : (
+            <ImageGallery images={PlaceHolderImages} />
+          )}
         </div>
         <WishForm />
         <div className="w-full max-w-3xl text-center space-y-4">
