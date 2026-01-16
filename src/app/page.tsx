@@ -4,7 +4,8 @@ import {useEffect} from 'react';
 import Image from 'next/image';
 import Bubbles from '@/components/bubbles';
 import Footer from '@/components/footer';
-import ImageCarousel from '@/components/image-carousel';
+import ImageGallery from '@/components/image-gallery';
+import {PlaceHolderImages} from '@/lib/placeholder-images';
 import TextBoard from '@/components/text-board';
 import WishForm, {type Wish} from '@/components/wish-form';
 import WishList from '@/components/wish-list';
@@ -69,7 +70,9 @@ export default function Home() {
         </div>
 
         <TextBoard />
-        <ImageCarousel />
+        <div className="w-full max-w-3xl">
+          <ImageGallery images={PlaceHolderImages} />
+        </div>
         <WishForm />
         <div className="w-full max-w-3xl text-center space-y-4">
           <h2 className="text-3xl font-bold text-foreground">
