@@ -18,17 +18,22 @@ const Balloon = ({
   position,
   animation,
   delay,
+  text,
 }: {
   color: string;
   position: string;
   animation: string;
   delay?: string;
+  text?: React.ReactNode;
 }) => (
   <div
     className={`absolute ${position} ${animation} z-0`}
     style={{ animationDelay: delay }}
   >
-    <div className={`relative w-12 h-16 rounded-full shadow-md ${color}`}>
+    <div
+      className={`relative w-12 h-16 rounded-full shadow-md ${color} flex items-center justify-center text-center`}
+    >
+      {text}
       <div
         className={`absolute bottom-[-2px] left-1/2 -translate-x-1/2 w-3 h-3 ${color} transform rotate-45`}
       />
@@ -79,12 +84,17 @@ const CountdownTimer = () => {
     return (
         <div className="relative mb-8 flex items-center justify-center gap-8 flex-wrap">
             <AnalogClockFace />
-            <div className="relative pt-12 transition-transform duration-300 ease-in-out hover:scale-105">
+            <div className="relative pt-16 transition-transform duration-300 ease-in-out hover:scale-105">
                 <Balloon
                     color="bg-blue-400"
                     position="absolute top-0 right-0 -mr-4 rotate-[25deg]"
                     animation="animate-sway-2"
                     delay="0.5s"
+                    text={
+                        <span className="text-white font-bold text-sm leading-tight">
+                          1 yr old
+                        </span>
+                      }
                 />
                 <div className="flex flex-col items-center gap-4">
                     <h3 className="text-xl font-semibold tracking-wider animate-pulse text-muted-foreground">Birthday Loading...</h3>
