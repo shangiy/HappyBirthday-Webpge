@@ -12,7 +12,7 @@ import HeadingDecorations from '@/components/heading-decorations';
 const initialWishes: Wish[] = [
   {
     id: '1',
-    name: 'Birthday girl here',
+    name: 'Mama Adrian',
     wish: 'Thank you for your wishes',
     timestamp: new Date('2026-01-15T04:30:00'),
   },
