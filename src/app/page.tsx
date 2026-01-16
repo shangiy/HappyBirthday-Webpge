@@ -48,11 +48,11 @@ export default function Home() {
         <div className="relative mt-16 flex items-center gap-6">
           <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-full border-4 border-white shadow-2xl">
             <Image
-              src="/Adrian.jpg"
-              alt="A photo of Adrian"
+              src="/logo.jpg"
+              alt="Logo"
               fill
               className="object-cover"
-              data-ai-hint="person birthday"
+              data-ai-hint="logo"
             />
           </div>
           <div className="relative">
