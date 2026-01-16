@@ -57,7 +57,7 @@ export default function Home() {
         <WishForm onWishSubmit={handleWishSubmit} />
         <div className="w-full max-w-3xl text-center space-y-4">
           <h2 className="text-3xl font-bold text-foreground">
-            Family & Friends
+            Family & Friends wishes to Adrian 
           </h2>
           <WishList wishes={wishes} />
         </div>
