@@ -89,10 +89,20 @@ export default {
             height: '0',
           },
         },
+        'sway-1': {
+          '0%, 100%': { transform: 'rotate(-20deg) translateX(-5px)' },
+          '50%': { transform: 'rotate(10deg) translateX(5px)' },
+        },
+        'sway-2': {
+          '0%, 100%': { transform: 'rotate(20deg) translateX(5px)' },
+          '50%': { transform: 'rotate(-10deg) translateX(-5px)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'sway-1': 'sway-1 8s ease-in-out infinite',
+        'sway-2': 'sway-2 10s ease-in-out infinite',
       },
     },
   },
