@@ -46,7 +46,7 @@ export default function Home() {
       <Bubbles />
       <main className="flex flex-1 flex-col items-center justify-center space-y-8 py-12 px-4">
         <div className="relative mt-16 flex items-center gap-6">
-          <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-full border-4 border-white shadow-2xl">
+          <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-full border-4 border-white shadow-2xl animate-slide-in-from-right">
             <Image
               src="/logo.jpg"
               alt="Logo"
@@ -55,7 +55,7 @@ export default function Home() {
               data-ai-hint="logo"
             />
           </div>
-          <div className="relative">
+          <div className="relative animate-fade-in-delayed opacity-0">
             <HeadingDecorations />
             <div className="text-center bg-foreground/10 backdrop-blur-sm p-4 rounded-lg z-10 relative">
               <h1 className="text-4xl font-bold text-foreground">
