@@ -1,77 +1,47 @@
 'use client';
 
 import * as React from 'react';
-import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from '@/components/ui/carousel';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Button } from './ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import ImageGallery from './image-gallery';
-import { ScrollArea } from './ui/scroll-area';
+import { cn } from '@/lib/utils';
 
 export default function ImageCarousel() {
-  const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
-  );
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if (PlaceHolderImages.length > 1) {
+        setCurrentIndex(
+          (prevIndex) => (prevIndex + 1) % PlaceHolderImages.length
+        );
+      }
+    }, 4000); // Change image every 4 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!PlaceHolderImages || PlaceHolderImages.length === 0) {
+    return null;
+  }
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-4">
-      <Carousel
-        plugins={[plugin.current]}
-        opts={{
-          align: 'start',
-          loop: true,
-        }}
-        className="w-full"
-        onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.reset}
-      >
-        <CarouselContent>
-          {PlaceHolderImages.map((image) => (
-            <CarouselItem key={image.id} className="md:basis-1/2 lg:basis-1/3">
-              <div className="p-1">
-                <div className="relative aspect-[9/16] overflow-hidden rounded-lg">
-                  <Image
-                    src={image.imageUrl}
-                    alt={image.description}
-                    fill
-                    className="object-cover"
-                    data-ai-hint={image.imageHint}
-                  />
-                </div>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
-      <div className="flex justify-center mt-4">
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button>view more pics</Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-4xl h-5/6 flex flex-col">
-            <DialogHeader>
-              <DialogTitle>A Glimpse of Adrian's Year</DialogTitle>
-            </DialogHeader>
-            <ScrollArea className="flex-1 -mx-6 -mb-6">
-              <div className="p-6">
-                <ImageGallery images={PlaceHolderImages} />
-              </div>
-            </ScrollArea>
-          </DialogContent>
-        </Dialog>
+    <div className="w-full max-w-[12rem] mx-auto px-4">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-lg shadow-2xl">
+        {PlaceHolderImages.map((image, index) => (
+          <Image
+            key={image.id}
+            src={image.imageUrl}
+            alt={image.description}
+            fill
+            sizes="25vw"
+            className={cn(
+              'object-cover transition-opacity duration-1000 ease-in-out',
+              index === currentIndex ? 'opacity-100' : 'opacity-0'
+            )}
+            data-ai-hint={image.imageHint}
+          />
+        ))}
       </div>
     </div>
   );
