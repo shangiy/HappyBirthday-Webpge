@@ -33,7 +33,7 @@ export default function ImageCarousel() {
           {PlaceHolderImages.map((image) => (
             <CarouselItem key={image.id} className="md:basis-1/2 lg:basis-1/3">
               <div className="p-1">
-                <div className="relative aspect-video overflow-hidden rounded-lg">
+                <div className="relative aspect-[9/16] overflow-hidden rounded-lg">
                     <Image
                       src={image.imageUrl}
                       alt={image.description}
