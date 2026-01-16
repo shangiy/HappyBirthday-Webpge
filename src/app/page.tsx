@@ -22,6 +22,7 @@ import { Button } from '@/components/ui/button';
 import { Camera } from 'lucide-react';
 import ImageCarousel from '@/components/image-carousel';
 import FadingImageCarousel from '@/components/fading-image-carousel';
+import PosterCarousel from '@/components/poster-carousel';
 
 export default function Home() {
   const {auth, firestore} = useFirebase();
@@ -86,14 +87,7 @@ export default function Home() {
           <WishList wishes={wishes || []} />
         </div>
         <div className="w-full max-w-3xl">
-          <Image
-            src="/Jan25.png"
-            alt="Adrian's Birthday Poster"
-            width={1080}
-            height={1080}
-            className="w-full h-auto rounded-lg shadow-2xl"
-            data-ai-hint="poster birthday"
-          />
+          <PosterCarousel />
         </div>
       </main>
       <Footer />
