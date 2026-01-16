@@ -47,28 +47,33 @@ const CountdownTimer = () => {
     const timerData = [
         { label: 'days', value: timeLeft.days },
         { label: 'hours', value: timeLeft.hours },
+        { label: 'minutes', value: timeLeft.minutes },
+        { label: 'seconds', value: timeLeft.seconds },
     ];
     
     const timeIsUp = timeLeft.days <= 0 && timeLeft.hours <= 0 && timeLeft.minutes <= 0 && timeLeft.seconds <= 0;
 
     return (
-        <div className="mb-8 flex items-center justify-start gap-8">
+        <div className="mb-8 flex items-center justify-center gap-8 flex-wrap">
             <AnalogClockFace />
-            <div className="flex gap-4">
-                {timeIsUp ? (
-                    <span className="text-2xl font-bold text-primary animate-pulse">Happy Birthday, Adrian!</span>
-                ) : (
-                    timerData.map(({ label, value }) => (
-                        <div key={label} className="flex flex-col items-center">
-                            <div className="bg-primary/20 text-primary-foreground rounded-lg p-3 shadow-inner w-20 flex justify-center">
-                                <span className="text-4xl font-bold font-mono text-primary">
-                                    {String(value).padStart(2, '0')}
-                                </span>
+            <div className="flex flex-col items-center gap-4">
+                <h3 className="text-xl font-semibold tracking-wider animate-pulse text-muted-foreground">Birthday Loading...</h3>
+                <div className="flex gap-2">
+                    {timeIsUp ? (
+                        <span className="text-2xl font-bold text-primary animate-pulse">Happy Birthday, Adrian!</span>
+                    ) : (
+                        timerData.map(({ label, value }) => (
+                            <div key={label} className="flex flex-col items-center">
+                                <div className="bg-primary/20 text-primary-foreground rounded-lg p-2 shadow-inner w-16 flex justify-center">
+                                    <span className="text-3xl font-bold font-mono text-primary">
+                                        {String(value).padStart(2, '0')}
+                                    </span>
+                                </div>
+                                <span className="text-xs text-muted-foreground mt-2 uppercase tracking-wider">{label}</span>
                             </div>
-                            <span className="text-sm text-muted-foreground mt-2 uppercase tracking-wider">{label}</span>
-                        </div>
-                    ))
-                )}
+                        ))
+                    )}
+                </div>
             </div>
         </div>
     );
