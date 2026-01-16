@@ -77,31 +77,33 @@ const CountdownTimer = () => {
     const timeIsUp = timeLeft.days <= 0 && timeLeft.hours <= 0 && timeLeft.minutes <= 0 && timeLeft.seconds <= 0;
 
     return (
-        <div className="relative mb-8 flex items-center justify-center gap-8 flex-wrap pt-12">
-            <Balloon
-                color="bg-blue-400"
-                position="top-4 right-1/4 rotate-[25deg]"
-                animation="animate-sway-2"
-                delay="0.5s"
-            />
+        <div className="relative mb-8 flex items-center justify-center gap-8 flex-wrap">
             <AnalogClockFace />
-            <div className="flex flex-col items-center gap-4">
-                <h3 className="text-xl font-semibold tracking-wider animate-pulse text-muted-foreground">Birthday Loading...</h3>
-                <div className="flex gap-2">
-                    {timeIsUp ? (
-                        <span className="text-2xl font-bold text-primary animate-pulse">Happy Birthday, Adrian!</span>
-                    ) : (
-                        timerData.map(({ label, value }) => (
-                            <div key={label} className="flex flex-col items-center">
-                                <div className="bg-primary/20 text-primary-foreground rounded-lg p-2 shadow-inner w-16 flex justify-center">
-                                    <span className="text-3xl font-bold font-mono text-primary">
-                                        {String(value).padStart(2, '0')}
-                                    </span>
+            <div className="relative pt-12 transition-transform duration-300 ease-in-out hover:scale-105">
+                <Balloon
+                    color="bg-blue-400"
+                    position="absolute top-0 right-0 -mr-4 rotate-[25deg]"
+                    animation="animate-sway-2"
+                    delay="0.5s"
+                />
+                <div className="flex flex-col items-center gap-4">
+                    <h3 className="text-xl font-semibold tracking-wider animate-pulse text-muted-foreground">Birthday Loading...</h3>
+                    <div className="flex gap-2">
+                        {timeIsUp ? (
+                            <span className="text-2xl font-bold text-primary animate-pulse">Happy Birthday, Adrian!</span>
+                        ) : (
+                            timerData.map(({ label, value }) => (
+                                <div key={label} className="flex flex-col items-center">
+                                    <div className="bg-primary/20 text-primary-foreground rounded-lg p-2 shadow-inner w-16 flex justify-center">
+                                        <span className="text-3xl font-bold font-mono text-primary">
+                                            {String(value).padStart(2, '0')}
+                                        </span>
+                                    </div>
+                                    <span className="text-xs text-muted-foreground mt-2 uppercase tracking-wider">{label}</span>
                                 </div>
-                                <span className="text-xs text-muted-foreground mt-2 uppercase tracking-wider">{label}</span>
-                            </div>
-                        ))
-                    )}
+                            ))
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
