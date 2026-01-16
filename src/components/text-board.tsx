@@ -5,12 +5,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import AnalogClockFace from './analog-clock-face';
 
 const wishes = [
-  "💖 On this special day, we celebrate the amazing person you are. Your smile lights up every room, and your kindness touches every heart. ✨",
-  "🌟 May this year bring you endless joy, beautiful adventures, and all the happiness you deserve. ✨",
-  "🎉 You make the world brighter just by being in it. Here's to another year of wonderful memories! ✨",
-  "💝 Wishing you a birthday as beautiful and extraordinary as you are! ✨",
-  "💖 You are the blair to my serena! 💖",
-  "💖 You're the Lorelai to my Rory! 💖",
+  "💖 Happy 1st Birthday, Adrian! 💖",
+  "🎉 On this January 25th is extra special day, we celebrate the tiny, amazing human you are. Your giggle lights up every room, and your sweet spirit touches every heart. ✨",
+  "💝 You’ve made our lives so much better just by joining the family. We can't wait to see all the big things you'll do! ✨",
+  "🌟 May this year be filled with cake, new discoveries, and so much love. You deserve the whole world and more. ✨",
+  "🎉 You make our world so much brighter just by being in it. Here’s to a lifetime of wonderful memories starting right now! ✨",
+  "💝 Have a birthday that is just as wonderful and special as you! ✨",
 ];
 
 const CountdownTimer = () => {
