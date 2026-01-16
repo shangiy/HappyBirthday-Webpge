@@ -52,7 +52,7 @@ export default function Home() {
     <div className="relative flex min-h-screen flex-col overflow-x-clip">
       <Bubbles />
       <main className="flex flex-1 flex-col items-center justify-center space-y-8 py-12 px-4">
-        <div className="relative mt-16 flex items-center gap-6">
+        <div className="relative mt-16 flex flex-col sm:flex-row items-center gap-6">
           <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-full border-4 border-white shadow-2xl animate-slide-in-from-right">
             <Image
               src="/logo.png"
@@ -63,14 +63,16 @@ export default function Home() {
               data-ai-hint="logo"
             />
           </div>
-          <div className="relative opacity-0 animate-fade-in-delayed">
+          <div className="relative">
             <HeadingDecorations />
             <div className="text-center bg-foreground/10 backdrop-blur-sm p-4 rounded-lg z-10 relative">
-              <h1 className="text-4xl font-bold text-foreground">
-                <TrickleInText text="Happy Birthday, Adrian!" baseDelay={0.7} stagger={0.03} />
+              <h1 className="text-4xl font-bold text-foreground flex flex-col sm:flex-row sm:gap-x-2 justify-center">
+                <TrickleInText text="Happy" baseDelay={0.7} stagger={0.03} />
+                <TrickleInText text="Birthday," baseDelay={0.85} stagger={0.03} />
+                <TrickleInText text="Adrian!" baseDelay={1.15} stagger={0.03} />
               </h1>
               <h3 className="text-xl mt-2 text-foreground/80">
-                <TrickleInText text="Celebrating You Today and Always ✨" baseDelay={1.0} stagger={0.03} />
+                <TrickleInText text="Celebrating You Today and Always ✨" baseDelay={1.4} stagger={0.03} />
               </h3>
             </div>
           </div>
