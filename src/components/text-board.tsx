@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
+import AnalogClockFace from './analog-clock-face';
 
 const wishes = [
   "💖 On this special day, we celebrate the amazing person you are. Your smile lights up every room, and your kindness touches every heart. ✨",
@@ -40,7 +41,7 @@ const CountdownTimer = () => {
     }, []);
 
     if (!isMounted) {
-        return null;
+        return <div className="h-48 mb-8" />; // Placeholder for clock
     }
 
     const timerData = [
@@ -51,7 +52,8 @@ const CountdownTimer = () => {
     const timeIsUp = timeLeft.days <= 0 && timeLeft.hours <= 0 && timeLeft.minutes <= 0 && timeLeft.seconds <= 0;
 
     return (
-        <div className="mb-8">
+        <div className="mb-8 flex items-center justify-start gap-8">
+            <AnalogClockFace />
             <div className="flex gap-4">
                 {timeIsUp ? (
                     <span className="text-2xl font-bold text-primary animate-pulse">Happy Birthday, Adrian!</span>
