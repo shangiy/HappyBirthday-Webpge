@@ -13,6 +13,29 @@ const wishes = [
   "💝 Have a birthday that is just as wonderful and special as you! ✨",
 ];
 
+const Balloon = ({
+  color,
+  position,
+  animation,
+  delay,
+}: {
+  color: string;
+  position: string;
+  animation: string;
+  delay?: string;
+}) => (
+  <div
+    className={`absolute ${position} ${animation} z-0`}
+    style={{ animationDelay: delay }}
+  >
+    <div className={`relative w-12 h-16 rounded-full shadow-md ${color}`}>
+      <div
+        className={`absolute bottom-[-2px] left-1/2 -translate-x-1/2 w-3 h-3 ${color} transform rotate-45`}
+      />
+    </div>
+  </div>
+);
+
 const CountdownTimer = () => {
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
     const [isMounted, setIsMounted] = useState(false);
@@ -54,7 +77,18 @@ const CountdownTimer = () => {
     const timeIsUp = timeLeft.days <= 0 && timeLeft.hours <= 0 && timeLeft.minutes <= 0 && timeLeft.seconds <= 0;
 
     return (
-        <div className="mb-8 flex items-center justify-center gap-8 flex-wrap">
+        <div className="relative mb-8 flex items-center justify-center gap-8 flex-wrap pt-12">
+            <Balloon
+                color="bg-pink-400"
+                position="top-0 left-1/4 -rotate-[25deg]"
+                animation="animate-sway-1"
+            />
+            <Balloon
+                color="bg-blue-400"
+                position="top-4 right-1/4 rotate-[25deg]"
+                animation="animate-sway-2"
+                delay="0.5s"
+            />
             <AnalogClockFace />
             <div className="flex flex-col items-center gap-4">
                 <h3 className="text-xl font-semibold tracking-wider animate-pulse text-muted-foreground">Birthday Loading...</h3>
