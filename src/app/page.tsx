@@ -20,6 +20,7 @@ import {
 import {collection, query, orderBy} from 'firebase/firestore';
 import { Button } from '@/components/ui/button';
 import { Camera } from 'lucide-react';
+import ImageCarousel from '@/components/image-carousel';
 
 export default function Home() {
   const {auth, firestore} = useFirebase();
@@ -74,14 +75,15 @@ export default function Home() {
 
         <TextBoard />
         <div className="w-full max-w-4xl text-center space-y-4">
-          {!showImageGrid ? (
-            <Button onClick={() => setShowImageGrid(true)} size="lg">
-              <Camera className="mr-2" />
-              View more image
-            </Button>
-          ) : (
-            <ImageGallery images={PlaceHolderImages} />
-          )}
+          <ImageCarousel />
+          <Button
+            onClick={() => setShowImageGrid((prev) => !prev)}
+            size="lg"
+          >
+            <Camera className="mr-2" />
+            {showImageGrid ? 'Hide Images' : 'View more images'}
+          </Button>
+          {showImageGrid && <ImageGallery images={PlaceHolderImages} />}
         </div>
         <WishForm />
         <div className="w-full max-w-3xl text-center space-y-4">
