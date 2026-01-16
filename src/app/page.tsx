@@ -21,7 +21,6 @@ import {collection, query, orderBy} from 'firebase/firestore';
 import { Button } from '@/components/ui/button';
 import { Camera } from 'lucide-react';
 import ImageCarousel from '@/components/image-carousel';
-import FadingImageCarousel from '@/components/fading-image-carousel';
 import PosterCarousel from '@/components/poster-carousel';
 
 export default function Home() {
@@ -53,7 +52,16 @@ export default function Home() {
       <Bubbles />
       <main className="flex flex-1 flex-col items-center justify-center space-y-8 py-12 px-4">
         <div className="relative mt-16 flex items-center gap-6">
-          <FadingImageCarousel />
+          <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-full border-4 border-white shadow-2xl animate-slide-in-from-right">
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              fill
+              className="object-cover"
+              priority
+              data-ai-hint="logo"
+            />
+          </div>
           <div className="relative animate-fade-in-delayed opacity-0">
             <HeadingDecorations />
             <div className="text-center bg-foreground/10 backdrop-blur-sm p-4 rounded-lg z-10 relative">
