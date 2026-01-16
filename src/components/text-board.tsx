@@ -116,7 +116,15 @@ export default function TextBoard() {
         <CountdownTimer />
         <ul className="space-y-6">
           {wishes.map((wish, index) => (
-            <li key={index} className="text-muted-foreground text-lg leading-relaxed">
+            <li
+              key={index}
+              className={`text-muted-foreground text-lg leading-relaxed ${
+                index > 0 ? 'opacity-0 animate-trickle-in' : ''
+              }`}
+              style={
+                index > 0 ? { animationDelay: `${(index - 1) * 0.3}s` } : {}
+              }
+            >
               {wish}
             </li>
           ))}
