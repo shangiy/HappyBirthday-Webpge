@@ -113,6 +113,10 @@ export default {
           '0%': { transform: 'translateX(50px)', opacity: '0' },
           '100%': { transform: 'translateX(0)', opacity: '1' },
         },
+        'trickle-in-char': {
+          '0%': { transform: 'translateX(20px) scale(0.8)', opacity: '0' },
+          '100%': { transform: 'translateX(0) scale(1)', opacity: '1' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -123,6 +127,7 @@ export default {
         'fade-in-delayed': 'fade-in 0.8s ease-out 0.7s forwards',
         'trickle-in': 'trickle-in 0.5s ease-out forwards',
         'trickle-in-from-right-delayed': 'trickle-in-from-right 0.8s ease-out 0.7s forwards',
+        'trickle-in-char': 'trickle-in-char 0.6s ease-out forwards',
       },
     },
   },

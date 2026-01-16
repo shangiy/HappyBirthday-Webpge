@@ -22,6 +22,7 @@ import { Button } from '@/components/ui/button';
 import { Camera } from 'lucide-react';
 import ImageCarousel from '@/components/image-carousel';
 import PosterCarousel from '@/components/poster-carousel';
+import TrickleInText from '@/components/trickle-in-text';
 
 export default function Home() {
   const {auth, firestore} = useFirebase();
@@ -62,14 +63,14 @@ export default function Home() {
               data-ai-hint="logo"
             />
           </div>
-          <div className="relative animate-trickle-in-from-right-delayed opacity-0">
+          <div className="relative opacity-0 animate-fade-in-delayed">
             <HeadingDecorations />
             <div className="text-center bg-foreground/10 backdrop-blur-sm p-4 rounded-lg z-10 relative">
               <h1 className="text-4xl font-bold text-foreground">
-                Happy Birthday, Adrian!
+                <TrickleInText text="Happy Birthday, Adrian!" baseDelay={0.7} stagger={0.03} />
               </h1>
               <h3 className="text-xl mt-2 text-foreground/80">
-                Celebrating You Today and Always ✨
+                <TrickleInText text="Celebrating You Today and Always ✨" baseDelay={1.0} stagger={0.03} />
               </h3>
             </div>
           </div>
