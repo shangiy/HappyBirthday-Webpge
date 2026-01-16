@@ -18,6 +18,7 @@ import {
   initiateAnonymousSignIn,
 } from '@/firebase';
 import {collection, query, orderBy} from 'firebase/firestore';
+import { Button } from '@/components/ui/button';
 
 export default function Home() {
   const {auth, firestore} = useFirebase();
@@ -70,8 +71,9 @@ export default function Home() {
         </div>
 
         <TextBoard />
-        <div className="w-full max-w-3xl">
+        <div className="w-full max-w-3xl text-center space-y-4">
           <ImageGallery images={PlaceHolderImages} />
+          <Button>View more pics</Button>
         </div>
         <WishForm />
         <div className="w-full max-w-3xl text-center space-y-4">
