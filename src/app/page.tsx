@@ -71,8 +71,9 @@ export default function Home() {
                 <TrickleInText text="Birthday," baseDelay={0.85} stagger={0.03} />
                 <TrickleInText text="Adrian!" baseDelay={1.15} stagger={0.03} />
               </h1>
-              <h3 className="text-xl mt-2 text-foreground/80">
-                <TrickleInText text="Celebrating You Today and Always ✨" baseDelay={1.4} stagger={0.03} />
+              <h3 className="text-xl mt-2 text-foreground/80 flex flex-col sm:flex-row sm:gap-x-2 justify-center">
+                <TrickleInText text="Celebrating You" baseDelay={1.4} stagger={0.03} />
+                <TrickleInText text="Today and Always ✨" baseDelay={1.6} stagger={0.03} />
               </h3>
             </div>
           </div>
