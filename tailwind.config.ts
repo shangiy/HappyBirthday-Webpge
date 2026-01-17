@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'rainbow-gradient': 'linear-gradient(to right, #ef4444, #f97316, #eab308, #22c55e, #3b82f6, #8b5cf6, #000, #fff, #ef4444)',
+      },
       fontFamily: {
         body: ['PT Sans', 'sans-serif'],
         headline: ['PT Sans', 'sans-serif'],
@@ -118,11 +121,8 @@ export default {
           '100%': { transform: 'translateX(0) scale(1)', opacity: '1' },
         },
         'text-gradient': {
-          '0%, 100%': {
-            'background-position': '0% 50%',
-          },
-          '50%': {
-            'background-position': '100% 50%',
+          to: {
+            'background-position': '200% center',
           },
         },
       },
@@ -136,7 +136,7 @@ export default {
         'trickle-in': 'trickle-in 0.5s ease-out forwards',
         'trickle-in-from-right-delayed': 'trickle-in-from-right 0.8s ease-out 0.7s forwards',
         'trickle-in-char': 'trickle-in-char 0.6s ease-out forwards',
-        'text-gradient': 'text-gradient 3s ease-in-out infinite',
+        'text-gradient': 'text-gradient 10s linear infinite',
       },
     },
   },

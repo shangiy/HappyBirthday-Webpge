@@ -86,7 +86,7 @@ const CountdownTimer = () => {
         <div className="relative mb-8 flex items-center justify-center gap-8 flex-wrap overflow-hidden">
             {timeIsUp && <Confetti />}
             <AnalogClockFace />
-            <div className="relative pt-16 transition-transform duration-300 ease-in-out hover:scale-105 group">
+            <div className="relative pt-16 transition-transform duration-300 ease-in-out hover:scale-105 group animate-trickle-in-from-right-delayed">
                 <Balloon
                     color="bg-blue-400"
                     position="absolute top-0 right-0 -mr-4 rotate-[25deg]"
@@ -103,7 +103,7 @@ const CountdownTimer = () => {
                         {timeIsUp ? (
                              <span className="animate-pulse text-2xl font-bold text-primary">Happy Birthday, Adrian!</span>
                         ) : (
-                            <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-[200%_auto] bg-clip-text text-transparent animate-text-gradient">
+                            <span className="bg-rainbow-gradient bg-[200%_auto] bg-clip-text text-transparent animate-text-gradient">
                                 Birthday Loading...
                             </span>
                         )}
