@@ -8,7 +8,7 @@ import { Globe } from 'lucide-react';
 
 const wishes = [
   <span key="wish-1" className="inline-flex items-center gap-2">
-    <Globe className="h-6 w-6 animate-spin text-amber-500" />
+    <Globe className="h-6 w-6 animate-[spin_4s_linear_infinite] text-amber-500" />
     <span>Happy 1st Birthday, Adrian! 💖</span>
   </span>,
   "🎉 On this January 25th is an extra special day, we celebrate the tiny, amazing human you are. Your giggle lights up every room, and your sweet spirit touches every heart. ✨",
