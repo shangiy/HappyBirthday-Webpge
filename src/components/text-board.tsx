@@ -4,9 +4,13 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import AnalogClockFace from './analog-clock-face';
 import Confetti from './confetti';
+import { Globe } from 'lucide-react';
 
 const wishes = [
-  "💖 Happy 1st Birthday, Adrian! 💖",
+  <span key="wish-1" className="inline-flex items-center gap-2">
+    <Globe className="h-6 w-6 animate-spin text-amber-500" />
+    <span>Happy 1st Birthday, Adrian! 💖</span>
+  </span>,
   "🎉 On this January 25th is an extra special day, we celebrate the tiny, amazing human you are. Your giggle lights up every room, and your sweet spirit touches every heart. ✨",
   "💝 You’ve made our lives so much better just by joining the family. We can't wait to see all the big things you'll do! ✨",
   "🌟 May this year be filled with cake, new discoveries, and so much love. You deserve the whole world and more. ✨",
