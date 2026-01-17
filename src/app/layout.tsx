@@ -4,8 +4,8 @@ import {FirebaseClientProvider} from '@/firebase';
 import {Toaster} from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Baby Blue Bubbles',
-  description: 'A special birthday wish for Adrian',
+  title: 'HappyBirthday Webpge',
+  description: 'A website developed by Mushangi for Adrian special birthday ',
 };
 
 export default function RootLayout({

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import AnalogClockFace from './analog-clock-face';
+import Confetti from './confetti';
 
 const wishes = [
   "💖 Happy 1st Birthday, Adrian! 💖",
@@ -44,6 +45,7 @@ const Balloon = ({
 const CountdownTimer = () => {
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
     const [isMounted, setIsMounted] = useState(false);
+    const [timeIsUp, setTimeIsUp] = useState(false);
 
     useEffect(() => {
         setIsMounted(true);
@@ -61,6 +63,7 @@ const CountdownTimer = () => {
                 setTimeLeft({ days, hours, minutes, seconds });
             } else {
                 setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+                setTimeIsUp(true);
                 clearInterval(interval);
             }
         }, 1000);
@@ -79,12 +82,11 @@ const CountdownTimer = () => {
         { label: 'seconds', value: timeLeft.seconds },
     ];
     
-    const timeIsUp = timeLeft.days <= 0 && timeLeft.hours <= 0 && timeLeft.minutes <= 0 && timeLeft.seconds <= 0;
-
     return (
-        <div className="relative mb-8 flex items-center justify-center gap-8 flex-wrap">
+        <div className="relative mb-8 flex items-center justify-center gap-8 flex-wrap overflow-hidden">
+            {timeIsUp && <Confetti />}
             <AnalogClockFace />
-            <div className="relative pt-16 transition-transform duration-300 ease-in-out hover:scale-105">
+            <div className="relative pt-16 transition-transform duration-300 ease-in-out hover:scale-105 group">
                 <Balloon
                     color="bg-blue-400"
                     position="absolute top-0 right-0 -mr-4 rotate-[25deg]"
@@ -97,22 +99,20 @@ const CountdownTimer = () => {
                       }
                 />
                 <div className="flex flex-col items-center gap-4">
-                    <h3 className="text-xl font-semibold tracking-wider animate-pulse text-muted-foreground">Birthday Loading...</h3>
+                    <h3 className="text-xl font-semibold tracking-wider text-muted-foreground">
+                        {timeIsUp ? <span className="animate-pulse text-2xl font-bold text-primary">Happy Birthday, Adrian!</span> : 'Birthday Loading...'}
+                    </h3>
                     <div className="flex gap-2">
-                        {timeIsUp ? (
-                            <span className="text-2xl font-bold text-primary animate-pulse">Happy Birthday, Adrian!</span>
-                        ) : (
-                            timerData.map(({ label, value }) => (
-                                <div key={label} className="flex flex-col items-center">
-                                    <div className="bg-primary/20 text-primary-foreground rounded-lg p-2 shadow-inner w-16 flex justify-center">
-                                        <span className="text-3xl font-bold font-mono text-primary">
-                                            {String(value).padStart(2, '0')}
-                                        </span>
-                                    </div>
-                                    <span className="text-xs text-muted-foreground mt-2 uppercase tracking-wider">{label}</span>
+                        {timerData.map(({ label, value }) => (
+                            <div key={label} className="flex flex-col items-center">
+                                <div className="bg-primary/20 text-primary-foreground rounded-lg p-2 shadow-inner w-16 flex justify-center">
+                                    <span className="text-3xl font-bold font-mono text-primary">
+                                        {String(value).padStart(2, '0')}
+                                    </span>
                                 </div>
-                            ))
-                        )}
+                                <span className="text-xs text-muted-foreground mt-2 uppercase tracking-wider">{label}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
