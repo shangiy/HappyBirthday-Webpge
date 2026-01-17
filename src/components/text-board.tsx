@@ -99,8 +99,14 @@ const CountdownTimer = () => {
                       }
                 />
                 <div className="flex flex-col items-center gap-4">
-                    <h3 className="text-xl font-semibold tracking-wider text-muted-foreground">
-                        {timeIsUp ? <span className="animate-pulse text-2xl font-bold text-primary">Happy Birthday, Adrian!</span> : 'Birthday Loading...'}
+                    <h3 className="text-xl font-semibold tracking-wider">
+                        {timeIsUp ? (
+                             <span className="animate-pulse text-2xl font-bold text-primary">Happy Birthday, Adrian!</span>
+                        ) : (
+                            <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-[200%_auto] bg-clip-text text-transparent animate-text-gradient">
+                                Birthday Loading...
+                            </span>
+                        )}
                     </h3>
                     <div className="flex gap-2">
                         {timerData.map(({ label, value }) => (
